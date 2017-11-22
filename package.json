@@ -1,0 +1,58 @@
+{
+  "name": "nodejs-backend",
+  "version": "1.0.0",
+  "description": "Backend test for Jibble",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorioinc/nodejs-backend.git"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "precommit": "lint-staged"
+  },
+  "keywords": [
+    "backend",
+    "test",
+    "jibble"
+  ],
+  "author": "Oscar Soriano",
+  "bugs": {
+    "url": "https://github.com/sorioinc/nodejs-backend/issues"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.0",
+    "gulp-jest": "^2.0.0",
+    "gulp-prettier-eslint": "^1.1.0",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "lint-staged": "^4.0.2",
+    "prettier": "^1.7.0",
+    "prettier-eslint": "^6.4.2",
+    "prettier-eslint-cli": "^4.1.1",
+    "run-sequence": "^1.2.2"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "eslint",
+      "git add"
+    ]
+  },
+  "homepage": "https://github.com/sorioinc/nodejs-backend#readme"
+}
