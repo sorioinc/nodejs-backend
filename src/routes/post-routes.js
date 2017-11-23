@@ -10,6 +10,7 @@ module.exports = [
     method: 'GET',
     path: '/posts',
     config: {
+      auth: 'simple',
       handler: {
         async: postHandler.getAll,
       },
@@ -41,6 +42,7 @@ module.exports = [
     method: 'GET',
     path: '/posts/{postId}',
     config: {
+      auth: 'simple',
       validate: {
         params: {
           postId: Joi.number()
@@ -80,6 +82,7 @@ module.exports = [
     method: 'POST',
     path: '/posts',
     config: {
+      auth: 'simple',
       validate: {
         payload: {
           userId: Joi.number()
@@ -120,6 +123,7 @@ module.exports = [
     method: 'PUT',
     path: '/posts/{postId}',
     config: {
+      auth: 'simple',
       validate: {
         payload: {
           userId: Joi.number()
@@ -160,6 +164,7 @@ module.exports = [
     method: 'DELETE',
     path: '/posts/{postId}',
     config: {
+      auth: 'simple',
       validate: {
         params: {
           postId: Joi.number()

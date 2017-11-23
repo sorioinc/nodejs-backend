@@ -7,6 +7,10 @@ const hapiAsyncHandler = require('hapi-async-handler');
 const vision = require('vision');
 const inert = require('inert');
 const hapiSwagger = require('hapi-swagger');
+const AuthBearer = require('hapi-auth-bearer-token');
+const BoomHelper = require('./src/common/boom-helper');
+
+const boomHelper = new BoomHelper();
 
 const hapiSwaggerOptions = {
   info: {
@@ -40,23 +44,35 @@ const plugins = [
     register: hapiSwagger,
     options: hapiSwaggerOptions,
   },
+  {
+    register: AuthBearer,
+  },
 ];
 
-const options = {
-  routes: {
-    prefix: '/api',
-  },
-};
-
-server.register(plugins, options, async (err) => {
+server.register(plugins, async (err) => {
   if (err) {
     throw err;
   }
+
+  server.auth.strategy('simple', 'bearer-access-token', {
+    allowQueryToken: true,
+    allowMultipleHeaders: false,
+    accessTokenName: 'access_token',
+    validateFunc(token, callback) {
+      if (token === 'af24353tdsfw') {
+        return callback(null, true, { token }, {});
+      }
+
+      return callback(null, false, { token }, {});
+    },
+    unauthorizedFunc: () => boomHelper.dispatchBoomCall({ code: 501 }),
+  });
 
   server.start((error) => {
     if (error) {
       throw error;
     }
+    server.realm.modifiers.route.prefix = '/api';
     // eslint-disable-next-line global-require
     server.route(require('./src/routes/routes'));
     console.log(`server running at: ${server.info.uri}`);

@@ -62,6 +62,7 @@
 		"boom": "^7.1.1",
 		"hapi": "^16.5.2",
 		"hapi-async-handler": "^1.0.3",
+		"hapi-auth-bearer-token": "^5.1.0",
 		"hapi-swagger": "^7.7.1",
 		"inert": "^4.0.0",
 		"joi": "^13.0.2",

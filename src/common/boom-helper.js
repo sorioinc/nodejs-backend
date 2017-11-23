@@ -13,7 +13,7 @@ module.exports = class BoomHelper {
         return Boom.badImplementation(error.message);
       default:
         if (error.code > 0) {
-          return new Boom(error.code, { statusCode: error.code });
+          return new Boom(error.message, { statusCode: error.code });
         }
         return Boom.badImplementation();
     }

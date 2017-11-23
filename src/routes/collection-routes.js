@@ -10,6 +10,7 @@ module.exports = [
     method: 'GET',
     path: '/collection',
     config: {
+      auth: 'simple',
       handler: {
         async: collectionHandler.getAll,
       },
