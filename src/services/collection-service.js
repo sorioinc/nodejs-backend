@@ -10,20 +10,23 @@ module.exports = class CollectionService {
   getAll() {
     return new Promise(async (resolve, reject) => {
       try {
-        let posts = await this.postRepository.getAll();
-        posts = posts.sort(() => 0.5 - Math.random()).slice(0, 30);
+        const posts = await this.postRepository.getAll();
+        const albums = await this.albumRepository.getAll();
+        const users = await this.userRepository.getAll();
 
-        let albums = await this.albumRepository.getAll();
-        albums = albums.sort(() => 0.5 - Math.random()).slice(0, 30);
+        const collection = [];
+        for (let x = 1; x <= 30; x++) {
+          const post = posts[Math.floor(Math.random() * posts.length)];
+          const album = albums[Math.floor(Math.random() * albums.length)];
+          const user = users[Math.floor(Math.random() * users.length)];
+          collection.push({
+            post,
+            album,
+            user,
+          });
+        }
 
-        let users = await this.userRepository.getAll();
-        users = users.sort(() => 0.5 - Math.random()).slice(0, 30);
-
-        return resolve({
-          posts,
-          albums,
-          users,
-        });
+        return resolve(collection);
       } catch (err) {
         const message = 'An error occurred trying to get the collection.';
         return reject({

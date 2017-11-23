@@ -30,15 +30,13 @@ describe('CollectionService', () => {
       const promise = collectionService.getAll();
 
       return promise.then((result) => {
-        expect(result).toHaveProperty('posts');
-        expect(result).toHaveProperty('albums');
-        expect(result).toHaveProperty('users');
+        expect(result[0]).toHaveProperty('post');
+        expect(result[0]).toHaveProperty('album');
+        expect(result[0]).toHaveProperty('user');
         expect(postRepository.getAll).toHaveBeenCalled();
         expect(albumRepository.getAll).toHaveBeenCalled();
         expect(userRepository.getAll).toHaveBeenCalled();
-        expect(result.posts.length).toBe(30);
-        expect(result.albums.length).toBe(30);
-        expect(result.users.length).toBe(10);
+        expect(result.length).toBe(30);
       });
     });
     test('Should fail when error getting data from repositories', () => {
