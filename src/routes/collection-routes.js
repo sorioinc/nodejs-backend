@@ -14,8 +14,8 @@ module.exports = [
       handler: {
         async: collectionHandler.getAll,
       },
-      description: 'Returns all the posts',
-      notes: 'Returns all the posts',
+      description: 'Returns 30 items with post, album and user',
+      notes: 'Returns 30 items with post, album and user',
       tags: ['api'],
       plugins: {
         'hapi-swagger': {

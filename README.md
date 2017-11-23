@@ -123,3 +123,8 @@ gulp prettify
 ```
 
 which takes care of both.
+
+## Documentation
+
+Api documentation is provided by Swagger, you can find it at the server:port the
+app is running at, for example: http://localhost:3000/documentation

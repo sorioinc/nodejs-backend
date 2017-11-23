@@ -100,8 +100,8 @@ module.exports = [
       handler: {
         async: postHandler.create,
       },
-      description: 'Returns the newly created post',
-      notes: 'Returns the newly created post',
+      description: 'Creates a new post',
+      notes: 'Creates a new post',
       tags: ['api'],
       plugins: {
         'hapi-swagger': {
@@ -112,6 +112,11 @@ module.exports = [
                 id: Joi.number()
                   .integer()
                   .description('Id of the post.'),
+                userId: Joi.number()
+                  .integer()
+                  .description('Id of the user related to the post.'),
+                title: Joi.string().description("Post's title"),
+                body: Joi.string().description("Post's content"),
               }),
             },
           },
@@ -141,8 +146,8 @@ module.exports = [
       handler: {
         async: postHandler.update,
       },
-      description: 'Returns the newly created post',
-      notes: 'Returns the newly created post',
+      description: 'Updates an existing post',
+      notes: 'Updates an existing post',
       tags: ['api'],
       plugins: {
         'hapi-swagger': {
@@ -153,6 +158,11 @@ module.exports = [
                 id: Joi.number()
                   .integer()
                   .description('Id of the post.'),
+                userId: Joi.number()
+                  .integer()
+                  .description('Id of the user related to the post.'),
+                title: Joi.string().description("Post's title"),
+                body: Joi.string().description("Post's content"),
               }),
             },
           },
@@ -176,8 +186,8 @@ module.exports = [
       handler: {
         async: postHandler.delete,
       },
-      description: 'Returns the specified post',
-      notes: 'Returns the specified post',
+      description: 'Deletes a post.',
+      notes: 'Deletes a post.',
       tags: ['api'],
       plugins: {
         'hapi-swagger': {
