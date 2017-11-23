@@ -128,3 +128,13 @@ which takes care of both.
 
 Api documentation is provided by Swagger, you can find it at the server:port the
 app is running at, for example: http://localhost:3000/documentation
+
+## Caching and Request Throttling
+
+Hapi has plugins for caching, created by the same core development team. So it
+offers it out of the box, it also includes external bindings for Redis, MongoDB,
+Riak and many more.
+
+For the request throttling, we can use a limitd plugin called patova, which we
+can just plug in less than 10 lines of code, this will allow us to control the
+page requests for any given user.
